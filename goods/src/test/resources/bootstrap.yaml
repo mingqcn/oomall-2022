@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        register-enabled: false
+        enabled: false
+      config:
+        enabled: false
+  application:
+    name: goods-service

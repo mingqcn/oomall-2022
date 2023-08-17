@@ -1,0 +1,68 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos
+  data:
+    redis:
+      repositories:
+        enabled: false
+  redis:
+    host: redis
+    database: 0
+    password: 123456
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql:3306/payment?serverTimezone=Asia/Shanghai
+    username: demouser
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 3
+      min-idle: 3
+      max-active: 100
+      max-wait: 60000
+      stat-view-servlet:
+        login-username: admin
+        login-password: 123456
+        enabled: true
+        url-pattern: /druid/*
+
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 100
+      validation-query: select 1
+  jackson:
+    time-zone: GMT+8
+
+mybatis:
+  configuration:
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+pagehelper:
+  reasonable: true
+  helper-dialect: mysql
+
+server:
+  port: 8080
+  tomcat:
+    threads:
+      max: 2000
+      min-spare: 100
+
+oomall:
+  core:
+    page-size:
+      max: 1000
+      default: 10
+  payment:
+    shop-channel:
+      timeout: 3600
+

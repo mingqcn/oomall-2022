@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="cn.edu.xmu.oomall.alipay.mapper.RoyaltySettleMapper">
+
+	<resultMap id="RoyaltySettleVo"
+		type="cn.edu.xmu.oomall.alipay.model.vo.RoyaltySettleVo">
+		<id column="id" property="id" />
+		<result column="out_request_no" property="out_request_no" />
+		<result column="trade_no" property="trade_no" />
+		<result column="royalty" property="royalty" />
+		<result column="capturetime" property="capturetime" />
+	</resultMap>
+	
+	<insert id="saveSettle">
+		insert into
+		oomall_alipay_royalty_settle(out_request_no,trade_no,royalty,capturetime)
+		values(#{param1},#{param2},#{param3},#{param4})
+	</insert>
+
+	<select id="querySettle" resultMap="RoyaltySettleVo">
+		select * from
+		oomall_alipay_royalty_relation where out_request_no=#{param1} and
+		trade_no=#{param2}
+	</select>
+
+</mapper>

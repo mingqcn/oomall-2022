@@ -1,0 +1,2 @@
+#nginx
+docker run -v /root/oomall-2022/conf/nginx/conf.d:/etc/nginx/conf.d -v /root/oomall-2022/conf/nginx/pass:/etc/nginx/pass -v /root/nginx/log:/var/log/nginx -v /root/unit-test:/unit-test -v /root/public-test:/public-test -p 80:80 --name nginx  -d nginx:latest

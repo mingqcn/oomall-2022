@@ -1,0 +1,22 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+logs
+~$*
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*.MF
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/

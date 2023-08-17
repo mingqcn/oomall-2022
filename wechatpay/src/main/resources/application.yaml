@@ -1,0 +1,79 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos
+  data:
+    redis:
+      repositories:
+        enabled: false
+  redis:
+    host: redis
+    database: 0
+    password: 123456
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql:3306/wechatpay?serverTimezone=Asia/Shanghai
+    username: demouser
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 3
+      min-idle: 3
+      max-active: 100
+      max-wait: 60000
+      stat-view-servlet:
+        login-username: admin
+        login-password: 123456
+        enabled: true
+        url-pattern: /druid/*
+
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 100
+      validation-query: select 1
+  jackson:
+    time-zone: GMT+8
+
+mybatis:
+  type-aliases-package: cn.edu.xmu.oomall.wechatpay.model
+  mapper-locations: classpath*:cn.edu.xmu.wechatpay.mapper/*.xml
+
+  configuration:
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+
+pagehelper:
+  reasonable: true
+  helper-dialect: mysql
+
+server:
+  port: 8080
+  tomcat:
+    threads:
+      max: 2000
+      min-spare: 100
+
+rocketmq:
+  name-server: rocketmq-namesrv:9876
+  producer:
+    group: wechatpay_callback_group
+    max-message-size: 4096
+    send-message-timeout: 3000
+    retry-times-when-send-async-failed: 2
+
+oomall:
+  core:
+    page-size:
+      max: 1000
+      default: 10
+  payment:
+    shop-channel:
+      timeout: 3600

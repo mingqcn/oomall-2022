@@ -1,0 +1,39 @@
+[
+  {
+    "_id": "56064886ade2f21f36b03134",
+    "_class": "cn.edu.xmu.oomall.goods.mapper.po.ShareActPo",
+    "thresholds": "[{quantity=12, percentage=135}]"
+  },
+  {
+    "_id": "56064886ade2f21f36b03133",
+    "_class": "cn.edu.xmu.oomall.goods.mapper.po.ShareActPo",
+    "thresholds": "[{quantity=10, percentage=5}, {quantity=6, percentage=25}]"
+  },
+  {
+    "_id": "638c12244eed4c38a14260bb",
+    "couponTime": {
+      "$date": {
+        "$numberLong": "1670344455207"
+      }
+    },
+    "quantity": 0,
+    "quantityType": 1,
+    "validTerm": 0,
+    "_class": "cn.edu.xmu.oomall.goods.mapper.po.CouponActPo"
+  },
+  {
+    "_id": "638c12244eed4c38a14260bc",
+    "quantity": 0,
+    "quantityType": 0,
+    "validTerm": 0,
+    "_class": "cn.edu.xmu.oomall.goods.mapper.po.CouponActPo",
+    "strategy":"{\"value\":1000,\"className\":\"cn.edu.xmu.oomall.goods.mapper.po.strategy.impl.PriceCouponDiscount\",\"couponLimitation\":{\"value\":10000,\"className\":\"cn.edu.xmu.oomall.goods.mapper.po.strategy.impl.PriceCouponLimitation\"}"
+  },
+  {
+    "_id": "638da1a42609322dcf0ad75c",
+    "quantity": 0,
+    "quantityType": 0,
+    "validTerm": 0,
+    "_class": "cn.edu.xmu.oomall.goods.mapper.po.CouponActPo"
+  }
+]

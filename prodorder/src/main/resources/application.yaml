@@ -1,0 +1,91 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  data:
+    redis:
+      repositories:
+        #禁用redis扫描repositories
+        enabled: false
+  datasource:
+    #JDBC驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #数据库服务器url
+    url: jdbc:mysql://mysql:3306/prodorder?serverTimezone=Asia/Shanghai
+    #数据库服务器用户名和密码
+    username: demouser
+    password: 123456
+    #数据库连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      #初始化时建立物理连接的个数
+      initial-size: 3
+      #最小连接池数量
+      min-idle: 3
+      #最大连接池数量
+      max-active: 100
+      #获取连接时最大等待时间
+      max-wait: 60000
+      #配置监控页面访问登录名及密码
+      stat-view-servlet:
+        login-username: admin
+        login-password: 123456
+        enabled: true
+        url-pattern: /druid/*
+
+      filter:
+        stat:
+          #是否开启慢sql查询监控
+          log-slow-sql: true
+          #慢SQL执行时间
+          slow-sql-millis: 100
+      validation-query: select 1
+  jackson:
+    #JSON的时间数据的时区
+    time-zone: GMT+8
+  jpa:
+    #控制输出SQL
+    show-sql: true
+    #控制输出格式
+    properties:
+      hibernate:
+        format_sql: true
+
+# 配置rocketmq
+rocketmq:
+  # 指定namesrv地址
+  name-server: rocketmq-namesrv:9876
+  producer:
+    #生产者group名称
+    group: order_group
+    #一次发送多少数量消息
+    max-message-size: 4096
+    #发送消息超时时间,默认3000
+    send-message-timeout: 3000
+    #发送消息失败重试次数，默认2
+    retry-times-when-send-async-failed: 2
+
+server:
+  port: 8082
+  tomcat:
+    threads:
+      #最大工作线程数
+      max: 200
+      #最小工作线程数
+      min-spare: 100
+
+oomall:
+  core:
+    page-size:
+      max: 1000
+      default: 10
+  order:
+    server-num: 0
+    order-check-top:
+      # 固定的延时等级 "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h"
+      delay-level: 3
+      #超时时间（秒）
+      timeout: 10
+

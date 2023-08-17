@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="cn.edu.xmu.oomall.alipay.mapper.RoyaltyRelationMapper">
+	<resultMap id="RoyaltyRelationVo"
+		type="cn.edu.xmu.oomall.alipay.model.vo.RoyaltyRelationVo">
+		<id column="id" property="id" />
+		<result column="out_request_no" property="outRequestNo" />
+		<result column="app_id" property="appId" />
+		<result column="login_name" property="loginName" />
+		<result column="name" property="name" />
+		<result column="memo" property="memo" />
+		<result column="bind_login_name" property="bindLoginName" />
+		<result column="type" property="type" />
+		<result column="account" property="account" />
+	</resultMap>
+
+	<insert id="bindRoyaltyRelation"
+		parameterType="cn.edu.xmu.oomall.alipay.model.vo.RoyaltyRelationVo">
+		insert into oomall_alipay_royalty_relation(
+		<if test="outRequestNo != null and outRequestNo != ''">out_request_no,</if>
+		<if test="appId != null and appId != ''">app_id,</if>
+		<if test="loginName != null and loginName != ''">login_name,</if>
+		<if test="name != null and name != ''">name,</if>
+		<if test="memo != null">memo,</if>
+		<if test="bindLoginName != null and bindLoginName != ''">bind_login_name,</if>
+		<if test="type != null and type != ''">type,</if>
+		<if test="account != null and account != ''">account</if>
+		) values(
+		<if test="outRequestNo != null and outRequestNo != ''">#{outRequestNo},</if>
+		<if test="appId != null and appId != ''">#{appId},</if>
+		<if test="loginName != null and loginName != ''">#{loginName},</if>
+		<if test="name != null and name != ''">#{name},</if>
+		<if test="memo != null">#{memo},</if>
+		<if test="bindLoginName != null and bindLoginName != ''">#{bindLoginName},</if>
+		<if test="type != null and type != ''">#{type},</if>
+		<if test="account != null and account != ''">#{account}</if>
+		)
+	</insert>
+
+	<delete id="unbindRoyaltyRelation" parameterType="String">
+		delete from oomall_alipay_royalty_relation where app_id=#{param1} and
+		type=#{param2} and account=#{param3}
+	</delete>
+	
+	<select id="queryRoyaltyRelationQuery" resultMap="RoyaltyRelationVo">
+		select type,account,memo from oomall_alipay_royalty_relation where app_id=#{param1} limit #{param2},#{param3}
+	</select>
+	
+	<select id="coutRoyaltyRelation" resultType="Integer">
+		select count(1) from oomall_alipay_royalty_relation where app_id=#{param1}
+	</select>
+	
+	<select id="existRelation" resultMap="RoyaltyRelationVo">
+		select * from oomall_alipay_royalty_relation where app_id=#{param1} and
+		type=#{param2} and account=#{param3}
+	</select>
+	
+	
+
+</mapper>

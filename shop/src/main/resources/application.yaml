@@ -1,0 +1,81 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+rocketmq:
+  name-server: rocketmq-namesrv:9876
+  producer:
+    group: template-group
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos
+  data:
+    redis:
+      repositories:
+        enabled: false
+    mongodb:
+      host: mongo
+      port: 27017
+      database: oomall
+      username: demouser
+      password: '123456'
+      authentication-database: oomall
+  redis:
+    host: redis
+    database: 0
+    password: 123456
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql:3306/shop?serverTimezone=Asia/Shanghai
+    username: demouser
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 3
+      min-idle: 3
+      max-active: 100
+      max-wait: 60000
+      stat-view-servlet:
+        login-username: admin
+        login-password: 123456
+        enabled: true
+        url-pattern: /druid/*
+
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 100
+      validation-query: select 1
+  jackson:
+    time-zone: GMT+8
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+server:
+  port: 8080
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 100
+
+oomall:
+  core:
+    page-size:
+      max: 1000
+      default: 10
+  shop:
+    shop:
+      timeout: 3600
+    region-template:
+      timeout: 3600
+      strategy: cn.edu.xmu.oomall.shop.dao.bo.divide.MaxDivideStrategy
+      algorithm: cn.edu.xmu.oomall.shop.dao.bo.divide.SimpleAlgorithm
+    del-template-topic:
+      # "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h"
+      delay-level: 3
+      timeout: 10

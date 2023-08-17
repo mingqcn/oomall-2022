@@ -1,0 +1,53 @@
+spring:
+  profiles:
+    active: test
+  data:
+    redis:
+      repositories:
+        #forbid redis to scan repositories
+        enabled: false
+    #MongoDB configuration
+    mongodb:
+      host: mongo
+      port: 27017
+      database: oomall
+      username: demouser
+      password: '123456'
+      authentication-database: oomall
+  jackson:
+    time-zone: GMT+8
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+rocketmq:
+  name-server: rocketmq-namesrv:9876
+
+server:
+  port: 8081
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 100
+
+oomall:
+  core:
+    page-size:
+      max: 1000
+      default: 10
+  product:
+    timeout: 3600
+  activity:
+    timeout: 3600
+  category:
+    timeout: 3600
+  onsale:
+    timeout: 3600
+

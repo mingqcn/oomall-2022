@@ -1,0 +1,22 @@
+spring:
+  redis:
+    host: redis
+    port: 6379
+    database: 0
+    password: 123456
+
+oomall:
+  core:
+    page-size:
+      max: 1000
+      default: 10
+  product:
+    timeout: 3600
+  activity:
+    timeout: 3600
+  category:
+    timeout: 3600
+  onsale:
+    timeout: 3600
+
+

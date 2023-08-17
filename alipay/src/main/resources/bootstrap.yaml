@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: alipay-service
+  cloud:
+    nacos:
+      config:
+        server-addr: nacos:8848
+        file-extension: yaml
+    inetutils:
+      ignored-interfaces: eth.*
+      preferred-networks: 10.0.1.;192.168.31.

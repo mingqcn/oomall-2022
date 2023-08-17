@@ -1,0 +1,53 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - HEAD
+              - OPTIONS
+      routes:
+        - id: region
+          uri: lb://region-service
+          predicates:
+            - Path=/region/**
+          filters:
+            - StripPrefix=1
+
+        - id: payment
+          uri: lb://payment-service
+          predicates:
+            - Path=/payment/**
+          filters:
+            - StripPrefix=1
+
+        - id: goods
+          uri: lb://goods-service
+          predicates:
+            - Path=/goods/**
+          filters:
+            - StripPrefix=1
+
+        - id: shop
+          uri: lb://shop-service
+          predicates:
+            - Path=/shop/**
+          filters:
+            - StripPrefix=1
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
