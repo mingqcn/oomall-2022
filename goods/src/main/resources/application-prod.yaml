@@ -1,0 +1,35 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos
+  datasource:
+    #JDBC drivers
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #database url
+    url: jdbc:mysql://mysql:3306/goods?serverTimezone=Asia/Shanghai
+    #database username and password
+    username: demouser
+    password: 123456
+    #database connection pool
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 3
+      min-idle: 3
+      max-active: 100
+      max-wait: 60000
+      stat-view-servlet:
+        login-username: admin
+        login-password: 123456
+        enabled: true
+        url-pattern: /druid/*
+
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 100
+      validation-query: select 1
+  redis:
+    host: redis
+    database: 0
+    password: 123456
